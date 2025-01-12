@@ -18,7 +18,15 @@ audio_library = {
         "CQACAgIAAxkBAAIDtGeENndPGdBFXBfy2VOw-4omrNa_AAJkXwACcmcoSO5ydN-rG3DcNgQ",
         "CQACAgIAAxkBAAIDs2eENnfvfV-xUu7aeHWDhpyklmF4AAJjXwACcmcoSArMm7ohDefkNgQ",
         "CQACAgIAAxkBAAIDtWeENneafW0szZmb6qr2Z-9o16opAAJlXwACcmcoSC774ZLZJpgMNgQ",
-        "CQACAgIAAxkBAAIDtmeENndrn52Pzt-QLmD0dyRp0DAbAAJmXwACcmcoSF2Rh_-Xzuo1NgQ"
+        "CQACAgIAAxkBAAIDtmeENndrn52Pzt-QLmD0dyRp0DAbAAJmXwACcmcoSF2Rh_-Xzuo1NgQ",
+        "CQACAgIAAxkBAAIFO2eESL51rCZrDtm6pf9vGKU112mNAAI-YAACcmcoSFN8IUKmhVQiNgQ",
+        "CQACAgIAAxkBAAIFOmeESL5iLKzEJ7Hhcg2LS2zvvR-sAAI9YAACcmcoSEi_kpaFUnaUNgQ",
+        "CQACAgIAAxkBAAIFPGeESL6BypGSlfUN5UAt9oz4FnXDAAI_YAACcmcoSKM83NRjd0ELNgQ",
+        "CQACAgIAAxkBAAIGRWeES0uvxvZLi7Ma5lY4namiHEV_AAIQbwACLfIgSBCUNqAuPk3QNgQ",
+        "CQACAgIAAxkBAAIGRmeES0syll1rq9RE6yDuAAEqaDL_lAACEW8AAi3yIEjyI2g-k0UQnTYE",
+        "CQACAgIAAxkBAAIGR2eES0ujZ3bVnsxnUB0gCtRVs7gQAAISbwACLfIgSE6Meol-pFihNgQ",
+        "CQACAgIAAxkBAAIGSGeES0u3HTrz2eJnh7D4V2BUHGj4AAITbwACLfIgSFIJvRVmKB74NgQ",
+        "CQACAgIAAxkBAAIGSWeES0tS4Gm08g0TWcs0UxUjCnrXAAIUbwACLfIgSFBRB_yRrSDkNgQ"
     ],
     "Для Старичків🧓🏼": [
         "CQACAgIAAxkBAAIDB2eEKeCNhbWvPBe3iteDtuWbEWJuAAIOXwACcmcoSMHgU5QZ-iX7NgQ",
@@ -49,14 +57,16 @@ audio_library = {
 
 @bot.message_handler(commands=['start'])
 def start_message(message):
-    bot.send_message(message.chat.id, "Привіт! Введіть команду /music для вибору музики.")
+    bot.send_message(message.chat.id, "Привіт! Введіть команду /music для вибору музики,дізнатися інформацію про бота /info.")
+
+#@bot.message_handler(comands=['info'])
+    #bot.send_photo(message.chat.id,open("","rb",caption="Привіт я міша")
+
 
 
 @bot.message_handler(commands=['music'])
 def music_message(message):
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
-    button = types.KeyboardButton("Інформація про бота")
-    markup.row(button)
     button1 = types.KeyboardButton("Українська музика🎺")
     button2 = types.KeyboardButton("Для Старичків🧓🏼")
     markup.row(button1,button2)
