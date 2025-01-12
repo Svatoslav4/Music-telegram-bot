@@ -1,73 +1,93 @@
 import telebot
 from telebot import types
 
+
 bot = telebot.TeleBot('7985806779:AAECH7S44hWattalE25ypuSx3Mmbapkn5sQ')
+
+
+audio_library = {
+    "Українська музика🎺": [
+        "CQACAgIAAxkBAAIDhmeEMsVnJ0ZQSWP_bVAAAZJXP3E2OQACU18AAnJnKEgd-YqEg_7H0TYE",
+        "CQACAgIAAxkBAAIDk2eENHPCD-j2etEhlqMwMjd6HLsGAAJeXwACcmcoSLbVS4h8fjuzNgQ"
+    ],
+
+    "Miyagi🎵": [
+        "CQACAgIAAxkBAAIC7GeEJE6e9_9Ks4o-4Naf1TSfgrDYAALxXgACcmcoSHn9lh6XhLTkNgQ",
+        "CQACAgIAAxkBAAIC8GeEJY1EDHPaWtfy9S251on7anlJAAL7XgACcmcoSMKpt4K4oiW7NgQ",
+        "CQACAgIAAxkBAAIC8meEJZsMLvb1YNPxFeNfXyneup7XAAL8XgACcmcoSCEUkiAaEWFkNgQ",
+        "CQACAgIAAxkBAAIDtGeENndPGdBFXBfy2VOw-4omrNa_AAJkXwACcmcoSO5ydN-rG3DcNgQ",
+        "CQACAgIAAxkBAAIDs2eENnfvfV-xUu7aeHWDhpyklmF4AAJjXwACcmcoSArMm7ohDefkNgQ",
+        "CQACAgIAAxkBAAIDtWeENneafW0szZmb6qr2Z-9o16opAAJlXwACcmcoSC774ZLZJpgMNgQ",
+        "CQACAgIAAxkBAAIDtmeENndrn52Pzt-QLmD0dyRp0DAbAAJmXwACcmcoSF2Rh_-Xzuo1NgQ"
+    ],
+    "Для Старичків🧓🏼": [
+        "CQACAgIAAxkBAAIDB2eEKeCNhbWvPBe3iteDtuWbEWJuAAIOXwACcmcoSMHgU5QZ-iX7NgQ",
+        "CQACAgIAAxkBAAIDDGeEKkTcmGRepX8o6NB1MojeFIvYAAISXwACcmcoSEhpyjyXIKdvNgQ",
+        "CQACAgIAAxkBAAIDDWeEKkQd97HrTexvua5GaGf8IGk-AAITXwACcmcoSODGkhaf9uT6NgQ",
+        "CQACAgIAAxkBAAIDC2eEKkTmpPOeSZpc-CWgDeFZroZzAAIRXwACcmcoSKJ8R33roNyyNgQ",
+        "CQACAgIAAxkBAAIDDmeEKkQplhcQgaSADxeb9v3irBuNAAIUXwACcmcoSHefrnPHQnmuNgQ",
+        "CQACAgIAAxkBAAIDD2eEKkRzvD4WR7vH7Q7RGeNNZtxQAAIVXwACcmcoSKp_yiTPTqyINgQ",
+        "CQACAgIAAxkBAAIDEGeEKkSmYV5hgIE3hHp0b4Da5waxAAIWXwACcmcoSDWBYbmLFI2mNgQ",
+        "CQACAgIAAxkBAAIDiGeEM2xGevFLX7sB0GHYxxBj0aTXAAJUXwACcmcoSLf1xnJ0lxHLNgQ"
+    ],
+
+    "Macan 𝑩𝑴𝑾":[
+        "CQACAgIAAxkBAAIEMWeEPqTYIXVMaHlGj0SubLNUSP9HAALPXwACcmcoSLH1G34rKymHNgQ",
+        "CQACAgIAAxkBAAID6meEPAmYoppfDJjUbGAymoAC7OsPAAKfXwACcmcoSO0P8QWgiNtgNgQ",
+        "CQACAgIAAxkBAAID62eEPAmQyyINIXYLiLD3dIvS6YfoAAKgXwACcmcoSAImdQROCkqqNgQ",
+        "CQACAgIAAxkBAAIEMmeEPqTXmzJnDq9SFq5BmiKlwdDJAALQXwACcmcoSPN3ookeWGzoNgQ",
+        "CQACAgIAAxkBAAIEM2eEPqQYGSQwjkJJRVXdyVKYWbzjAALRXwACcmcoSPqvd3DKKajlNgQ"
+    ],
+    "Travis Scott👨🏿":[
+        "CQACAgIAAxkBAAID8meEPO__4PdGmTjB18fepenw3otHAAKrXwACcmcoSJUrCL4ck5jhNgQ",
+        "CQACAgIAAxkBAAID82eEPO_4Ht3E5ShJyUG7zBP0uUFsAAKsXwACcmcoSDT1hiwuykvjNgQ",
+        "CQACAgIAAxkBAAID9WeEPO_NNILuaURSGF47q7feeVecAAKuXwACcmcoSDnLIrop_mZHNgQ",
+        "CQACAgIAAxkBAAID9WeEPO_NNILuaURSGF47q7feeVecAAKuXwACcmcoSDnLIrop_mZHNgQ"
+    ]
+}
+
 
 @bot.message_handler(commands=['start'])
 def start_message(message):
     bot.send_message(message.chat.id, "Привіт! Введіть команду /music для вибору музики.")
 
+
 @bot.message_handler(commands=['music'])
 def music_message(message):
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
-    button0 = types.KeyboardButton("Всі треки в боті")
-    markup.row(button0)
-    button1 = types.KeyboardButton("Український поп🎺")
-    button2 = types.KeyboardButton("Український реп🎤")
-    markup.row(button1, button2)
+    button = types.KeyboardButton("Інформація про бота")
+    markup.row(button)
+    button1 = types.KeyboardButton("Українська музика🎺")
+    button2 = types.KeyboardButton("Для Старичків🧓🏼")
+    markup.row(button1,button2)
     button3 = types.KeyboardButton("Miyagi🎵")
-    button4 = types.KeyboardButton("Для старічків")
-    markup.row(button3,button4)
-    bot.send_message(message.chat.id, "Привіт! Виберіть категорію музики:", reply_markup=markup)
-    bot.register_next_step_handler(message, onclick)
+    button4 = types.KeyboardButton("GYM Music🏋🏼‍♂️")
+    markup.row(button3, button4)
+    button5 = types.KeyboardButton("Macan 𝑩𝑴𝑾")
+    button6 = types.KeyboardButton("Travis Scott👨🏿")
+    markup.row(button5,button6)
+    bot.send_message(message.chat.id, "Виберіть категорію музики:", reply_markup=markup)
 
-def onclick(message):
+
+# Обробник вибору категорії музики
+@bot.message_handler(func=lambda message: message.text in audio_library)
+def send_music(message):
     chat_id = message.chat.id
+    category = message.text
 
-    if message.text == "Український поп🎺":
-        audio_files = [
-            r"D:/music/artem-pivovarov-klavdia-petrivna-baraban.mp3",
-            r"D:/music/dorofeeva-lebiga-a-ya-vse-plakala.mp3",
-            r"D:/music/chico-qatoshi-100licya-pokohay-mene.mp3",
-            r"D:/music/alyona-alyona-jerry-heil-teresa-maria.mp3"
-        ]
-
-    elif message.text == "Український реп🎤":
-        audio_files = [
-            r"D:/music/yaktak-sobol-poglyad.mp3",
-            r"D:/music/.mp3",
-            r"D:/music/.mp3"
-        ]
-
-    elif message.text == "Miyagi🎵":
-        audio_files = [
-            r"D:/music/MiyaGi & Andy Panda - Kosandra.mp3",
-            r"D:/music/MiyaGi feat. Andy Panda - Utopia.mp3",
-            r"D:/music/miyagi-jendshpil-feat.-amigo-samaja.mp3"
-        ]
-
-    elif message.text == "Всі треки в боті":
-        audio_files = [
-            r"D:/music/artem-pivovarov-klavdia-petrivna-baraban.mp3",
-            r"D:/music/dorofeeva-lebiga-a-ya-vse-plakala.mp3",
-            r"D:/music/chico-qatoshi-100licya-pokohay-mene.mp3",
-            r"D:/music/alyona-alyona-jerry-heil-teresa-maria.mp3"
-            r"D:/music/MiyaGi & Andy Panda - Kosandra.mp3",
-            r"D:/music/MiyaGi feat. Andy Panda - Utopia.mp3",
-            r"D:/music/miyagi-jendshpil-feat.-amigo-samaja.mp3",
-            r"D:/music/yaktak-sobol-poglyad.mp3"
-        ]
-
-    else:
-        bot.send_message(chat_id, "Невідома категорія. Спробуйте ще раз.")
+    if not audio_library[category]:
+        bot.send_message(chat_id, "На жаль, у цій категорії поки що немає музики.")
         return
 
-    # Надсилаємо файли один за одним
-    try:
-        for audio_path in audio_files:
-            with open(audio_path, 'rb') as audio:
-                bot.send_audio(chat_id, audio, caption="Ось твоя музика! 🎵")
-    except FileNotFoundError:
-        bot.reply_to(message, "Файл не знайдено. Перевір шлях до файлу.")
+    for file_id in audio_library[category]:
+        bot.send_audio(chat_id, file_id, caption="Ось твоя музика! 🎵")
+
+# Обробник завантаження аудіофайлу для отримання file_id
+@bot.message_handler(content_types=['audio'])
+def handle_audio(message):
+    file_id = message.audio.file_id
+    bot.reply_to(message, f"Ваш file_id: {file_id}")
+
 
 bot.polling(non_stop=True)
+
