@@ -6,9 +6,17 @@ bot = telebot.TeleBot('7985806779:AAECH7S44hWattalE25ypuSx3Mmbapkn5sQ')
 
 
 audio_library = {
+
+    "Top Music":[
+        "",
+        "",
+        "",
+    ],
+
     "Українська музика🎺": [
         "CQACAgIAAxkBAAIDhmeEMsVnJ0ZQSWP_bVAAAZJXP3E2OQACU18AAnJnKEgd-YqEg_7H0TYE",
-        "CQACAgIAAxkBAAIDk2eENHPCD-j2etEhlqMwMjd6HLsGAAJeXwACcmcoSLbVS4h8fjuzNgQ"
+        "CQACAgIAAxkBAAIDk2eENHPCD-j2etEhlqMwMjd6HLsGAAJeXwACcmcoSLbVS4h8fjuzNgQ",
+
     ],
 
     "Miyagi🎵": [
@@ -51,7 +59,24 @@ audio_library = {
         "CQACAgIAAxkBAAID82eEPO_4Ht3E5ShJyUG7zBP0uUFsAAKsXwACcmcoSDT1hiwuykvjNgQ",
         "CQACAgIAAxkBAAID9WeEPO_NNILuaURSGF47q7feeVecAAKuXwACcmcoSDnLIrop_mZHNgQ",
         "CQACAgIAAxkBAAID9WeEPO_NNILuaURSGF47q7feeVecAAKuXwACcmcoSDnLIrop_mZHNgQ"
+    ],
+
+    "The Weekend🤩":[
+        "CQACAgIAAxkBAAIHBWeFLSCiZzUWZk0o42Il3PfJo81RAAKfawACLfIoSDiBxINQzC4ZNgQ",
+        "CQACAgIAAxkBAAIHBGeFLSDS3_gYMucEo8_-AhVrrwbLAAKeawACLfIoSOLcv1hHEiCCNgQ",
+        "CQACAgIAAxkBAAIHBmeFLSCjWbRmOX_sq9OGekX-BTiJAAKgawACLfIoSMtBKK5CHFn9NgQ",
+        "CQACAgIAAxkBAAIHB2eFLSDefat3tO73x1JvC3XrPlO2AAKhawACLfIoSNyLamHHOBkeNgQ",
+        "CQACAgIAAxkBAAIHCGeFLSBp6AxSSgQewnIBLBBq4lUWAAKjawACLfIoSExOCIBxrsJ5NgQ",
+        "CQACAgIAAxkBAAIHCWeFLSDH6ahHkGsWl-G0AlUo8tFoAAKkawACLfIoSFh7vhvF98CgNgQ",
+        "CQACAgIAAxkBAAIHCmeFLSBozDMQAZs-wKespZrHMr3pAAKmawACLfIoSAPnz-MqudksNgQ",
+        "CQACAgIAAxkBAAIHC2eFLSBR-W4b5m5ZN4jkOU88vHWFAAKnawACLfIoSMne3M1bWkpSNgQ",
+        "CQACAgIAAxkBAAIHDGeFLSDyl5kCmppep0sTEvIMOxjZAAKoawACLfIoSDeGEAfE8fa1NgQ",
+    ],
+
+    "Drake🥷":[
+        ""
     ]
+
 }
 
 
@@ -59,14 +84,12 @@ audio_library = {
 def start_message(message):
     bot.send_message(message.chat.id, "Привіт! Введіть команду /music для вибору музики,дізнатися інформацію про бота /info.")
 
-#@bot.message_handler(comands=['info'])
-    #bot.send_photo(message.chat.id,open("","rb",caption="Привіт я міша")
-
-
 
 @bot.message_handler(commands=['music'])
 def music_message(message):
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
+    button0 = types.KeyboardButton("Top Music")
+    markup.row(button0)
     button1 = types.KeyboardButton("Українська музика🎺")
     button2 = types.KeyboardButton("Для Старичків🧓🏼")
     markup.row(button1,button2)
@@ -76,6 +99,11 @@ def music_message(message):
     button5 = types.KeyboardButton("Macan 𝑩𝑴𝑾")
     button6 = types.KeyboardButton("Travis Scott👨🏿")
     markup.row(button5,button6)
+    button7 = types.KeyboardButton("The Weekend🤩")
+    button8 = types.KeyboardButton("Drake🥷🏾")
+    markup.row(button7,button8)
+    button9 = types.KeyboardButton("Російська музика :(")
+    markup.row(button9)
     bot.send_message(message.chat.id, "Виберіть категорію музики:", reply_markup=markup)
 
 
@@ -98,6 +126,18 @@ def handle_audio(message):
     file_id = message.audio.file_id
     bot.reply_to(message, f"Ваш file_id: {file_id}")
 
+
+@bot.message_handler(commands=['info'])
+def send_photo(message):
+    with open("Gavenda.jpg","rb") as photo:
+        bot.send_photo(message.chat.id,photo,
+        caption = "Привіт цей бот розроблений для прослуховування музики в месенджера telegram. Бот несе в собі круті сучасні модні треки,як каже Міша Гавенда-(пиво є-є,пельмені є-є). Любіть пиво та пельмені,слухайте музику в нашому боті. Слава Україні🇺🇦!"
+                       )
+
+#@bot.message_handler(content_types=['video','text'])
+#def send_video(message):
+    #if message.text=="/info":
+        #video=open()
 
 bot.polling(non_stop=True)
 
